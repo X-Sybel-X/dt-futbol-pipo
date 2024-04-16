@@ -16,3 +16,25 @@ Escriba un programa que:
 Tip: consulten los métodos de la clase Date
 https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Date
 */
+
+var jugador = {
+  nombre: "Luciano",
+  apellido: "Rodriguez",
+  apodo: "Lucho",
+  fechaNacimiento: "16/07/2003" 
+};
+
+function edad(fechaNacimiento) {
+  var partesFecha = fechaNacimiento.split("/"); 
+  var fechaNac = new Date(partesFecha[2], partesFecha[1] - 1, partesFecha[0]); 
+  var fechaActual = new Date();
+  var edad = fechaActual.getFullYear() - fechaNac.getFullYear();
+  if (fechaNac.getMonth() > fechaActual.getMonth() || (fechaNac.getMonth() === fechaActual.getMonth() && fechaNac.getDate() > fechaActual.getDate())) {
+      edad--;
+  }
+  return edad;
+}
+
+var edadJugador = edad(jugador.fechaNacimiento);
+
+console.log(jugador.nombre + ' "' + jugador.apodo + '" ' + jugador.apellido + ' (' + edadJugador + ' años)');
